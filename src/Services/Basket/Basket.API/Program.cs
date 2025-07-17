@@ -28,6 +28,10 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration=builder.Configuration.GetConnectionString("Redis");
 });
+builder.Services.AddGrpcClient<Discount.Grpc.DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+});
 var app = builder.Build();
 
 app.MapCarter();
