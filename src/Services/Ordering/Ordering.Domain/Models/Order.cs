@@ -47,7 +47,7 @@ namespace Ordering.Domain.Models
             order.AddDomainEvent(new OrderCreatedEvent(order));
             return order;
         }
-        public void Update(OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment,OrderStatus status)
+        public void Update(OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment, OrderStatus status)
         {
             OrderName = orderName;
             ShippingAddress = shippingAddress;
@@ -57,7 +57,7 @@ namespace Ordering.Domain.Models
             AddDomainEvent(new OrderUpdatedEvent(this));
         }
 
-        public void Add(OrderId Id, ProductId productId, int quantity, decimal price)
+        public void Add(ProductId productId, int quantity, decimal price)
         {
 
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
